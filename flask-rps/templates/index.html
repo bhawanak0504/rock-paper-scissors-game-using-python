@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Rock, Paper, Scissors</h1>
+<form method="POST" action="/play">
+    <label for="choice">Choose your option:</label>
+    <select name="choice" id="choice" required>
+        <option value="🪨rock">Rock</option>
+        <option value="📃paper">Paper</option>
+        <option value="✂️scissors">Scissors</option>
+    </select>
+    <p>👏</p>
+    <button type="submit">Play</button>
+</form>
+
+{% if user_choice %}
+<h2>😊Your choice: {{ user_choice }}</h2>
+<h2>💻Computer's choice: {{ computer_choice }}</h2>
+<h2>🫣Result: {{ result }}</h2>
+
+<div class="choices">
+    <div class="user-choice">
+        {% if user_choice == 'rock' %}
+        <i class="fas fa-hand-rock"></i>
+        {% elif user_choice == 'paper' %}
+        <i class="fas fa-hand-paper"></i>
+        {% elif user_choice == 'scissors' %}
+        <i class="fas fa-hand-scissors"></i>
+        {% endif %}
+    </div>
+    <div class="computer-choice">
+        {% if computer_choice == 'rock' %}
+        <i class="fas fa-hand-rock"></i>
+        {% elif computer_choice == 'paper' %}
+        <i class="fas fa-hand-paper"></i>
+        {% elif computer_choice == 'scissors' %}
+        <i class="fas fa-hand-scissors"></i>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Add a button to play again -->
+<button onclick="location.href='/play'">Play Again</button>
+
+{% endif %}
+{% endblock %}
